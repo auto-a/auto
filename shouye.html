@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>layout 后台大布局 - Layui</title>
+  <link rel="stylesheet" href="layui-v2.5.4/layui-v2.5.4/layui/css/layui.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header" style="background: #3b8eba;">
+    <div class="layui-logo" style="color: #FFFFFF;">RuoYi</div>
+	<div class="layui-logo" style="margin-left: 125px;"> <input type="image" src="image/shouqi.gif"/> </div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-right" style="margin-right: 140px;">
+      <li class="layui-nav-item"><a href="">视频教程</a></li>
+      <li class="layui-nav-item"><a href="">开发文档</a></li>
+      <li class="layui-nav-item"><a href="">全屏显示</a></li>
+      <!-- <li class="layui-nav-item">
+        <a href="javascript:;">其它系统</a>
+        <dl class="layui-nav-child">
+          <dd><a href="">邮件管理</a></dd>
+          <dd><a href="">消息管理</a></dd>
+          <dd><a href="">授权管理</a></dd>
+        </dl>
+      </li> -->
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="image/toux.gif" class="layui-nav-img">
+          若依
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">安全设置</a></dd>
+		  <dd><a href="">退出</a> </dd>
+        </dl>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+		  <li class="layui-nav-item layui-nav-itemed">
+			  <img src="image/zhuye.gif" />
+			  </li>
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">主页</a>
+          <dl class="layui-nav-child">
+            <dd class="layui-nav-item leftdaohang ayui-this " data-url="shouye.html" mytitle="角色管理"><a>角色管理</a></dd>
+            <dd class="layui-nav-item leftdaohang" data-url="jy.html" mytitle="账号管理"><a>账号管理</a></dd>
+            <dd><a href="javascript:;">列表三</a></dd>
+            <dd><a href="">超链接</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">系统管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">用户管理</a></dd>
+            <dd><a href="javascript:;">角色管理</a></dd>
+            <dd><a href="">超链接</a></dd>
+			<dd><a href="javascript:;">用户管理</a></dd>
+			<dd><a href="javascript:;">角色管理</a></dd>
+			<dd><a href="">超链接</a></dd>
+			<dd><a href="javascript:;">用户管理</a></dd>
+			<dd><a href="javascript:;">角色管理</a></dd>
+			<dd><a href="">超链接</a></dd>
+			<dd><a href="javascript:;">用户管理</a></dd>
+			<dd><a href="javascript:;">角色管理</a></dd>
+			<dd><a href="">超链接</a></dd>
+			<dd><a href="javascript:;">用户管理</a></dd>
+			<dd><a href="javascript:;">角色管理</a></dd>
+			<dd><a href="">超链接</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">云市场</a></li>
+        <li class="layui-nav-item"><a href="">发布商品</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;">
+	<div class="layui-body">
+	              <!--tabs标签-->
+	              <div class="layui-tab " lay-filter="demo" lay-allowclose="true">
+	              <ul class="layui-tab-title">
+	             <!--   <li class="layui-this">角色管理</li>-->
+	              </ul>
+	              <div class="layui-tab-content">
+	              </div>
+	            </div> 
+	          </div>
+	
+	</div>
+  </div>
+  
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域
+  </div>
+</div>
+<script src="layui-v2.5.4/layui-v2.5.4/layui/layui.js"></script>
+ <script src="layui-v2.5.4/layui-v2.5.4/layui/layui.all.js"></script>
+<script>
+//JavaScript代码区域
+layui.use('element', function(){
+  var element = layui.element;
+  
+});
+            layui.use('element', function(){
+              var $ = layui.jquery
+              ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+              
+              //触发事件
+              var active = {
+                tabAdd: function(){
+                  //新增一个Tab项
+                  var htmlurl=$(this).attr('data-url');
+                  var mytitle=$(this).attr('mytitle'); 
+//                  alert("触发tab增加事件："+mytitle);
+                  //先判断是否已经有了tab
+                  var arrayObj = new Array();　//创建一个数组  
+                      $(".layui-tab-title").find('li').each(function() {
+                          var y = $(this).attr("lay-id"); 
+                          arrayObj.push(y);
+                   });
+//                    alert("遍历取到的数组："+arrayObj);
+                    var have=$.inArray(mytitle, arrayObj);  //返回 3,
+                    if (have>=0) {
+                        //tab已有标签
+//                        alert("遍历的已有标签："+mytitle);
+                      element.tabChange('demo', mytitle); //切换到当前点击的页面
+                    } else{
+                      //没有相同tab
+//                      alert("遍历的没有相同tab："+mytitle);
+                      element.tabAdd('demo', {
+                        title:mytitle //用于演示
+                        ,content: '<iframe style="width: 1000px;height: 1200px;" scrolling="no" src='+htmlurl+' ></iframe>'
+                        ,id: mytitle //实际使用一般是规定好的id，这里以时间戳模拟下
+                      })
+                      element.tabChange('demo', mytitle); //切换到当前点击的页面
+                    }
+                }
+               
+              };
+              $(".leftdaohang").click(function(){
+                var type="tabAdd";
+                var othis = $(this);
+//                var htmlurl=$(this).attr('data-url');
+//                var mytitle=$(this).attr('mytitle');
+                active[type] ? active[type].call(this, othis) : '';
+              });
+              
+            });
+</script>
+</body>
+</html>
